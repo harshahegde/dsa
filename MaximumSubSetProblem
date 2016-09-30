@@ -1,0 +1,61 @@
+package com.wellsfargo.wds.console;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class test {
+
+	public static void main(String[] args) {
+
+		List<Long> arra1 = new ArrayList<Long>();
+		arra1 = Arrays.asList(1967513926L, 1540383426L, -1303455736L, -521595368L );
+		System.out.println(-1 >-2);
+		System.out.println("Array = " + maxset(arra1));
+		
+	
+
+	}
+
+	public static ArrayList<Long> maxset(List<Long> a) {
+
+		Long tempCount = 0L, maxCount = 0L;
+		ArrayList<Long> temparrayMax, tempArray;
+		tempArray = new ArrayList<>();
+		temparrayMax = new ArrayList<>();
+		if (null != a && a.size() == 0)
+			return null;
+
+		for (int i = 0; i < a.size(); i++) {
+
+			if (a.get(i) >= 0) {
+				tempCount = tempCount + a.get(i);
+				tempArray.add(a.get(i));
+			}
+
+			if (a.get(i) < 0 || i == a.size() - 1) {
+				
+				if(maxCount == tempCount)
+				{
+					if(temparrayMax.size() < tempArray.size())
+					{
+						temparrayMax = tempArray;
+						tempArray = new ArrayList<Long>();
+					}
+				}
+				
+				if (maxCount < tempCount) {
+
+					maxCount = tempCount;
+					tempCount = 0L;
+					temparrayMax = tempArray;
+					tempArray = new ArrayList<Long>();
+				}
+			}
+
+		}
+
+		return temparrayMax;
+
+	}
+}
